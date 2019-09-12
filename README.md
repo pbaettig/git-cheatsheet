@@ -45,6 +45,8 @@ master  ----O----------------------
 ```
 The `bugfix` branch contains 2 new commits, no new commits have been added to master during the "lifetime" of the branch. When merging `bugfix` back to `master` git can perform a fast-forward merge, which means that the commits from `bugfix` are incorporated into `master` but no merge commit will be generated. This is only possible because there are now concurrent changes that need merging. If you need a merge commit use the `--no-ff` switch.
 
+To revert the merge you can simply reset to the commit when the branch was created (the very first `O` in the diagram above)
+
 ### traditional merge
 consider this example:
 ```
