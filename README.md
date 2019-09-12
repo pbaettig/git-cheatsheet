@@ -34,3 +34,22 @@ db17d5d change #3
 ```
 Note that the commit IDs have changed, that's what can make rebasing potentially dangerous. Git uses commit IDs to determine changes when merging for example.
 
+
+## merging
+## fast-forward merge
+consider two branches
+```
+bugfix        /----O----O---\
+             /               \
+master  ----O----------------------
+```
+The `bugfix` branch contains 2 new commits, no new commits have been added to master during the "lifetime" of the branch. When merging `bugfix` back to `master` git can perform a fast-forward merge, which means that the commits from `bugfix` are incorporated into `master` but no merge commit will be generated. This is only possible because there are now concurrent changes that need merging. If you need a merge commit use the `--no-ff` switch.
+
+consider this example:
+```
+feature        /----O----O----O--\
+              /                   \
+master   ----O----O-----O----O-----O---
+```
+There are concurrent changes between `feature` and `master`, so when merging the branches git has to actually look at the commits to make sure there are no conflicts. A fast-forward merge is not possible and a merge commit will be generated.
+
