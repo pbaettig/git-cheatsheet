@@ -36,7 +36,7 @@ Note that the commit IDs have changed, that's what can make rebasing potentially
 
 
 ## merging
-## fast-forward merge
+### fast-forward merge
 consider two branches
 ```
 bugfix        /----O----O---\
@@ -45,6 +45,7 @@ master  ----O----------------------
 ```
 The `bugfix` branch contains 2 new commits, no new commits have been added to master during the "lifetime" of the branch. When merging `bugfix` back to `master` git can perform a fast-forward merge, which means that the commits from `bugfix` are incorporated into `master` but no merge commit will be generated. This is only possible because there are now concurrent changes that need merging. If you need a merge commit use the `--no-ff` switch.
 
+### traditional merge
 consider this example:
 ```
 feature        /----O----O----O--\
