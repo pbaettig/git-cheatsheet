@@ -1,11 +1,12 @@
 # git-cheatsheet
-## commit difference
+## Diff
+### Commits
 `git log master..feature` lists all commits in `feature` that are not yet in `master`. If you've already checked out `feature` you can also use `git log master..`. 3 dots between branches shows the symetric difference between the branches, commits that are in either but not both. [StackOverflow](https://stackoverflow.com/questions/462974/what-are-the-differences-between-double-dot-and-triple-dot-in-git-com)
 
-## content difference
+### Content
 `git diff master..feature` shows the changes in `feature` in respect to `master`, or what would happen to `master` if `feature` was merged into it. With `--stat` only the count of changes per file will be shown, not the whole content.
 
-## squashing commits
+## Squashing commits
 Assume we're on a branch called `feature`, there we have 5 commits:
 ```
 9479527 change #3
@@ -35,7 +36,7 @@ db17d5d change #3
 Note that the commit IDs have changed, that's what can make rebasing potentially dangerous. Git uses commit IDs to determine changes when merging for example.
 
 
-## merging
+## Merging
 ### fast-forward merge
 consider two branches
 ```
@@ -56,3 +57,22 @@ master   ----O----O-----O----O-----O---
 ```
 There are concurrent changes between `feature` and `master`, so when merging the branches git has to actually look at the commits to make sure there are no conflicts. A fast-forward merge is not possible and a merge commit will be generated.
 
+## Reset
+### Reset local changes
+Suppose you have commits on your local branch that have not yet been pushed to the upstream branch, as well as some changes that have not yet been committed but should be preserved.
+```
+On branch master
+Your branch is ahead of 'origin/master' by 10 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   pascal/stuff.md
+```
+
+To reset the local branch back to the state of the published upstream branch, run `git reset --merge origin/<branch>`. This will discard all the committed changes from the local branch while preserving the uncommited changes.
+
+Use `git reset --hard origin/<branch>` to reset the branch and discard all changes in the working directory.
+
+`git reset origin/<branch>` resets the branch (remove all commits that are not in the upstream branch) but preserve all the changes in the working directory.
