@@ -62,6 +62,32 @@ There are concurrent changes between `feature` and `master`, so when merging the
 2. to preview the changes that are coming in from `origin/master` run `git diff master..origin/master`<br>
 to look at the incoming commits run `git log master..origin/master` or `git log orgin/master...` if you are already on `master`
 
+## Rebase
+A helpful way to look at what a rebase does is:
+A rebase moves your changes on top of the branch you are rebasing against. Like moving the commit off which the branch was created (or the start point).
+
+This has the advantage that no merge conflicts are created and keeps the history of the branch clean. The major disadvantage is that all commit IDs of your work change.
+
+Example:
+
+`feature` was branched off `master` at commit `X`. The developer has been working on `feature` and has created a number of commits. In the meantime new commits have been added to master (bugfixes, etc). To incoroporate these changes into `feature` without polluting the history with merge commits a rebase is the tool of choice. 
+
+Before
+```
+feature        /----F----F----F--
+              /
+master   ----X----O-----O----O-----O
+```
+
+After
+```
+feature                              /----F'---F'---F'-
+                                    /
+master   ----X----O-----O----O-----O
+
+```
+Note that all the commits in `feature` have changed (`F` to `F'`)
+
 
 ## Reset
 ### Reset local changes
