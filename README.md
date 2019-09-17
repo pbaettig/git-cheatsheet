@@ -57,6 +57,12 @@ master   ----O----O-----O----O-----O---
 ```
 There are concurrent changes between `feature` and `master`, so when merging the branches git has to actually look at the commits to make sure there are no conflicts. A fast-forward merge is not possible and a merge commit will be generated.
 
+### preview merge
+1. run `git fetch` to update commits from origin
+2. to preview the changes that are coming in from `origin/master` run `git diff master..origin/master`<br>
+to look at the incoming commits run `git log master..origin/master` or `git log orgin/master...` if you are already on `master`
+
+
 ## Reset
 ### Reset local changes
 Suppose you have commits on your local branch that have not yet been pushed to the upstream branch, as well as some changes that have not yet been committed but should be preserved.
