@@ -64,9 +64,9 @@ to look at the incoming commits run `git log master..origin/master` or `git log 
 
 ## Rebase
 A helpful way to look at what a rebase does is:
-A rebase moves your changes on top of the branch you are rebasing against. Like moving the commit off which the branch was created (or the start point).
+A rebase moves your changes on top of the branch you are rebasing against. Like moving the commit off which the branch was created (or the start point). This is done by re-applying all your changes on top of whatever branch you are rebasing against. That's also why the commit ids change.
 
-This has the advantage that no merge conflicts are created and keeps the history of the branch clean. The major disadvantage is that all commit IDs of your work change.
+This has the advantage that no merge commits are created and keeps the history of the branch clean. The major disadvantage is that all commit IDs of your work change.
 
 Example:
 
